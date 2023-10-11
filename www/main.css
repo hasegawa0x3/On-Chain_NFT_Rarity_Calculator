@@ -15,11 +15,12 @@ img {
     justify-content: center;
     align-items: center;
     flex-flow: row wrap;
-    max-width: 60vw;
+    max-width: 80vw;
     margin: auto;
     align-items: baseline;
 }
 input {
+    width: 250px;
     padding: 5px;
 }
 
@@ -29,12 +30,13 @@ button[type="submit"] {
     float: right;
 }
 
-#greeting {
+#result {
     margin: 10px auto;
-    padding: 10px 60px;
+    overflow-wrap:break-word;
+    padding: 10px 30px;
     border: 1px solid #222;
 }
 
-#greeting:empty {
+#result:empty {
     display: none;
 }
