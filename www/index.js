@@ -14,9 +14,13 @@ scoreButton.addEventListener("click", function() {
   .then(data=> data.json())
   .then(res=>{
     let result = "";
-    res.map(row=>
-      result += `[${row}],\n\n`  
-    )
+    let result = "";
+    result += `Harmonic Algorithm\n\n`  
+    result += `[${res[2]}],\n\n`  
+    result += `Geometric Algorithm\n\n`  
+    result += `[${res[3]}],\n\n`  
+    result += `Arithmetic Algorithm\n\n`  
+    result += `[${res[4]}],\n\n`  
     document.getElementById("result").innerText = result
   })
   .catch(err=>{
@@ -31,9 +35,12 @@ rankButton.addEventListener("click", function() {
   .then(data=> data.json())
   .then(res=>{
     let result = "";
-    res.map(row=>
-      result += `[${row}],\n\n`  
-    )
+    result += `Harmonic Algorithm\n\n`  
+    result += `[${res[2]}],\n\n`  
+    result += `Geometric Algorithm\n\n`  
+    result += `[${res[3]}],\n\n`  
+    result += `Arithmetic Algorithm\n\n`  
+    result += `[${res[4]}],\n\n` 
     document.getElementById("result").innerText = result
   })
   .catch(err=>{
@@ -48,9 +55,14 @@ normalizeButton.addEventListener("click", function() {
   .then(data=> data.json())
   .then(res=>{
     let result = "";
-    res.map(row=>
-      result += `[${row}],\n\n`  
-    )
+    result += `Normalized Harmonic\n\n`  
+    result += `[${res[1]}],\n\n`  
+    result += `Normalized Geometric by Frequencies\n\n`  
+    result += `[${res[2]}],\n\n`  
+    result += `Normalized Geometric by Counts\n\n`  
+    result += `[${res[3]}],\n\n`  
+    result += `Normalized Arithmetic\n\n`  
+    result += `[${res[4]}],\n\n`
     document.getElementById("result").innerText = result
   })
   .catch(err=>{
@@ -64,11 +76,16 @@ independenceButton.addEventListener("click", function() {
   fetch(`http://188.34.206.205:5001/get_trait_independence?canister_id=${canisterId}`)
   .then(data=> data.json())
   .then(res=>{
-    let result = "";
-    res.forEach(row => {
-      result += `[${row}],` + "\n\n" 
+   let result = "<table>";
+    res.map((row, row_index)=>{
+      result += "<tr>"
+      row.map((col, col_index) =>{
+        result += `<td>${res[col_index][row_index]}</td>`  
+      })
+      result += `</tr>`  
     })
-    document.getElementById("result").innerText = result
+    result += `</table>`  
+    document.getElementById("result").innerHTML = result
   })
   .catch(err=>{
     document.getElementById("result").innerText = "Error : " + err.response;
@@ -81,11 +98,16 @@ cramersvButton.addEventListener("click", function() {
   fetch(`http://188.34.206.205:5001/get_trait_cramersv?canister_id=${canisterId}`)
   .then(data=> data.json())
   .then(res=>{
-    let result = "";
-    res.map(row=>
-      result += `[${row}],\n\n`  
-    )
-    document.getElementById("result").innerText = result
+    let result = "<table>";
+    res.map((row, row_index)=>{
+      result += "<tr>"
+      row.map((col, col_index) =>{
+        result += `<td>${res[col_index][row_index]}</td>`  
+      })
+      result += `</tr>`  
+    })
+    result += `</table>`  
+    document.getElementById("result").innerHTML = result
   })
   .catch(err=>{
     document.getElementById("result").innerText = "Error : " + err.response;
